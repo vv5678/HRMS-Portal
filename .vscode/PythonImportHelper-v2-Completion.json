@@ -1,0 +1,710 @@
+[
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "smtplib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "smtplib",
+        "description": "smtplib",
+        "detail": "smtplib",
+        "documentation": {}
+    },
+    {
+        "label": "EmailMessage",
+        "importPath": "email.message",
+        "description": "email.message",
+        "isExtraImport": true,
+        "detail": "email.message",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.express",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.express",
+        "description": "plotly.express",
+        "detail": "plotly.express",
+        "documentation": {}
+    },
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "get_connection",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_connection():\n    conn = sqlite3.connect(str(DB_PATH), check_same_thread=False)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef init_db():\n    conn = get_connection()\n    cur = conn.cursor()\n    cur.execute(\n        \"\"\"\n        CREATE TABLE IF NOT EXISTS employees (",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def init_db():\n    conn = get_connection()\n    cur = conn.cursor()\n    cur.execute(\n        \"\"\"\n        CREATE TABLE IF NOT EXISTS employees (\n            employee_id TEXT PRIMARY KEY,\n            name TEXT,\n            email TEXT,\n            department TEXT,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_all",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def fetch_all(query, params=()):\n    conn = get_connection()\n    rows = conn.execute(query, params).fetchall()\n    return [dict(r) for r in rows]\ndef load_smtp_config():\n    if SMTP_CONFIG_PATH.exists():\n        try:\n            return json.loads(SMTP_CONFIG_PATH.read_text(encoding=\"utf-8\"))\n        except Exception:\n            return {}",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_smtp_config",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_smtp_config():\n    if SMTP_CONFIG_PATH.exists():\n        try:\n            return json.loads(SMTP_CONFIG_PATH.read_text(encoding=\"utf-8\"))\n        except Exception:\n            return {}\n    return {}\ndef save_smtp_config(config):\n    SMTP_CONFIG_PATH.write_text(json.dumps(config, indent=2), encoding=\"utf-8\")\ndef get_smtp_settings():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "save_smtp_config",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def save_smtp_config(config):\n    SMTP_CONFIG_PATH.write_text(json.dumps(config, indent=2), encoding=\"utf-8\")\ndef get_smtp_settings():\n    config = load_smtp_config()\n    merged = {\n        \"SMTP_HOST\": os.getenv(\"SMTP_HOST\") or config.get(\"SMTP_HOST\", \"\"),\n        \"SMTP_PORT\": os.getenv(\"SMTP_PORT\") or config.get(\"SMTP_PORT\", \"587\"),\n        \"SMTP_USER\": os.getenv(\"SMTP_USER\") or config.get(\"SMTP_USER\", \"\"),\n        \"SMTP_PASSWORD\": os.getenv(\"SMTP_PASSWORD\") or config.get(\"SMTP_PASSWORD\", \"\"),\n        \"SMTP_USE_TLS\": os.getenv(\"SMTP_USE_TLS\") or config.get(\"SMTP_USE_TLS\", \"true\"),",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_smtp_settings",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_smtp_settings():\n    config = load_smtp_config()\n    merged = {\n        \"SMTP_HOST\": os.getenv(\"SMTP_HOST\") or config.get(\"SMTP_HOST\", \"\"),\n        \"SMTP_PORT\": os.getenv(\"SMTP_PORT\") or config.get(\"SMTP_PORT\", \"587\"),\n        \"SMTP_USER\": os.getenv(\"SMTP_USER\") or config.get(\"SMTP_USER\", \"\"),\n        \"SMTP_PASSWORD\": os.getenv(\"SMTP_PASSWORD\") or config.get(\"SMTP_PASSWORD\", \"\"),\n        \"SMTP_USE_TLS\": os.getenv(\"SMTP_USE_TLS\") or config.get(\"SMTP_USE_TLS\", \"true\"),\n    }\n    return merged",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "execute_query",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def execute_query(query, params=()):\n    conn = get_connection()\n    conn.execute(query, params)\n    conn.commit()\ndef record_approval_history(request_type, employee_name, employee_id, approver, requested_by, status, details):\n    execute_query(\n        \"INSERT INTO approval_history (request_type, employee_name, employee_id, approver, requested_by, status, details, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)\",\n        (\n            request_type,\n            employee_name,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "record_approval_history",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def record_approval_history(request_type, employee_name, employee_id, approver, requested_by, status, details):\n    execute_query(\n        \"INSERT INTO approval_history (request_type, employee_name, employee_id, approver, requested_by, status, details, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)\",\n        (\n            request_type,\n            employee_name,\n            employee_id,\n            approver,\n            requested_by,\n            status,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "generate_seed_employees",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def generate_seed_employees():\n    first_names = [\n        \"Aarav\",\"Vivaan\",\"Aditya\",\"Vihaan\",\"Ananya\",\"Diya\",\"Meher\",\"Ishaan\",\"Naina\",\"Kabir\",\"Riya\",\"Arjun\",\"Saanvi\",\"Aditi\",\"Pranav\",\"Kavya\",\n        \"Reyansh\",\"Sara\",\"Yash\",\"Mira\",\"Rohan\",\"Tanya\",\"Dhruv\",\"Pooja\",\"Neil\",\"Aisha\",\"Rahul\",\"Simran\",\"Karan\",\"Ira\",\"Rishabh\",\"Nandini\",\"Harsh\",\n        \"Sofia\",\"Dev\",\"Anika\",\"Kunal\",\"Charvi\",\"Manav\",\"Tanvi\",\"Aryan\",\"Zoya\",\"Jay\",\"Kiara\",\"Abhinav\",\"Aanya\",\"Parth\",\"Esha\",\"Ved\",\"Krisha\",\n        \"Mohit\",\"Shruti\",\"Uday\",\"Jiya\",\"Ashish\",\"Mitali\",\"Nikhil\",\"Shreya\",\"Ritvik\",\"Anvi\",\"Tarun\",\"Bhavna\",\"Sahil\",\"Rhea\",\"Vansh\",\"Gargi\",\n        \"Ojas\",\"Sakshi\",\"Aman\",\"Vaishnavi\",\"Adwait\",\"Nikita\",\"Himanshu\",\"Palak\",\"Naman\",\"Khushi\",\"Rudra\",\"Ishita\",\"Chetan\",\"Disha\",\"Varun\",\"Jasmine\",\n        \"Tejas\",\"Samaira\",\"Kartik\",\"Aarohi\",\"Yuvraj\",\"Arihant\",\"Manya\",\"Vikram\",\"Pallavi\",\"Malhar\",\"Suhani\",\"Rajan\",\"Ayesha\",\"Rudransh\",\"Prerna\",\"Siddharth\",\n        \"Sneha\",\"Deepak\",\"Janhvi\",\"Devansh\",\"Aditi\",\"Keshav\",\"Anushka\",\"Amanpreet\",\"Mrunal\",\"Akash\",\"Nisha\",\"Chirag\",\"Ira\",\"Samar\",\"Ritika\",\"Tanush\",\"Divya\"\n    ]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "seed_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def seed_data():\n    conn = get_connection()\n    cur = conn.cursor()\n    emp_count = cur.execute(\"SELECT COUNT(*) FROM employees\").fetchone()[0]\n    if emp_count == 0:\n        employees = generate_seed_employees()\n        cur.executemany(\n            \"INSERT INTO employees (employee_id, name, email, department, role, status, work_mode, manager, salary, phone, address, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\",\n            employees,\n        )",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_employees",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_employees():\n    return pd.DataFrame(fetch_all(\"SELECT * FROM employees ORDER BY name ASC\"))\ndef generate_payslip_pdf(employee_name, employee_id, basic_salary, bonus, month_label):\n    from reportlab.lib.pagesizes import A4\n    from reportlab.lib import colors\n    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer\n    from reportlab.lib.styles import getSampleStyleSheet\n    doc = SimpleDocTemplate(io.BytesIO(), pagesize=A4)\n    buffer = io.BytesIO()\n    doc = SimpleDocTemplate(buffer, pagesize=A4)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "generate_payslip_pdf",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def generate_payslip_pdf(employee_name, employee_id, basic_salary, bonus, month_label):\n    from reportlab.lib.pagesizes import A4\n    from reportlab.lib import colors\n    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer\n    from reportlab.lib.styles import getSampleStyleSheet\n    doc = SimpleDocTemplate(io.BytesIO(), pagesize=A4)\n    buffer = io.BytesIO()\n    doc = SimpleDocTemplate(buffer, pagesize=A4)\n    styles = getSampleStyleSheet()\n    net_pay = float(basic_salary) + float(bonus)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "send_email",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def send_email(to_email: str, subject: str, message: str):\n    settings = get_smtp_settings()\n    smtp_host = settings.get(\"SMTP_HOST\", \"\")\n    smtp_port = settings.get(\"SMTP_PORT\", \"587\")\n    smtp_user = settings.get(\"SMTP_USER\", \"\")\n    smtp_password = settings.get(\"SMTP_PASSWORD\", \"\")\n    use_tls = str(settings.get(\"SMTP_USE_TLS\", \"true\")).lower() == \"true\"\n    if not all([smtp_host, smtp_port, smtp_user, smtp_password]):\n        execute_query(\n            \"INSERT INTO email_log (to_email, subject, message, sent_at, status) VALUES (?, ?, ?, ?, ?)\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "render_css",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def render_css():\n    st.markdown(\n        \"\"\"\n        <style>\n            :root {\n                --bg: #f4f7fb;\n                --card: #ffffff;\n                --brand: #6d28d9;\n                --brand-2: #ec4899;\n                --accent-1: #f59e0b;",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "go_to",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def go_to(page):\n    \"\"\"Central navigation helper: switches category AND page, then reruns.\"\"\"\n    for g, pages in MENU_GROUPS.items():\n        if page in pages:\n            st.session_state.selected_group = g\n            st.session_state.cat_select = g  # sync the category dropdown widget\n            break\n    st.session_state.selected_menu = page\n    st.rerun()\n# Clickable stat cards -> jump to the relevant page",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "render_request_rows",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def render_request_rows(df, table, id_col, name_col, detail_map, empty_msg=\"No requests found.\"):\n    \"\"\"Render request rows with Approve / Reject buttons in the LAST column.\"\"\"\n    if df.empty:\n        st.info(empty_msg)\n        return\n    for _, rrow in df.iterrows():\n        rid = rrow[id_col]\n        cells = st.columns([1.2] + [1.6] * (len(detail_map) - 1) + [0.7, 0.7])\n        for ci, (col_label, col_key) in enumerate(detail_map):\n            with cells[ci]:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "download_letter_block",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def download_letter_block(letter_text, label):\n    \"\"\"Small in-page letter template tool with TXT/PDF download.\"\"\"\n    st.markdown(f'<div class=\"letter-box\">{letter_text}</div>', unsafe_allow_html=True)\n    c1, c2 = st.columns(2)\n    with c1:\n        st.download_button(\"⬇️ Download as Text\", letter_text, f\"{label}.txt\", \"text/plain\", key=f\"lt_txt_{label}\")\n    with c2:\n        try:\n            from reportlab.lib.pagesizes import A4\n            from reportlab.lib.styles import getSampleStyleSheet",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent\nDB_PATH = BASE_DIR / \"hrms.db\"\nSMTP_CONFIG_PATH = BASE_DIR / \"smtp_config.json\"\nMENU_OPTIONS = [\n    \"Employee Dashboard\",\n    \"Employee Profiles\",\n    \"Employee Edit\",\n    \"Attendance\",\n    \"WFH / WFO\",\n    \"Project Timesheets\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PATH",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "DB_PATH = BASE_DIR / \"hrms.db\"\nSMTP_CONFIG_PATH = BASE_DIR / \"smtp_config.json\"\nMENU_OPTIONS = [\n    \"Employee Dashboard\",\n    \"Employee Profiles\",\n    \"Employee Edit\",\n    \"Attendance\",\n    \"WFH / WFO\",\n    \"Project Timesheets\",\n    \"Comp-Off\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "SMTP_CONFIG_PATH",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "SMTP_CONFIG_PATH = BASE_DIR / \"smtp_config.json\"\nMENU_OPTIONS = [\n    \"Employee Dashboard\",\n    \"Employee Profiles\",\n    \"Employee Edit\",\n    \"Attendance\",\n    \"WFH / WFO\",\n    \"Project Timesheets\",\n    \"Comp-Off\",\n    \"Leave Management\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "MENU_OPTIONS",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "MENU_OPTIONS = [\n    \"Employee Dashboard\",\n    \"Employee Profiles\",\n    \"Employee Edit\",\n    \"Attendance\",\n    \"WFH / WFO\",\n    \"Project Timesheets\",\n    \"Comp-Off\",\n    \"Leave Management\",\n    \"Leave Calendar\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "MENU_GROUPS",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "MENU_GROUPS = {\n    # new tabs added below\n    \"👥 People\": [\"Employee Dashboard\", \"Employee Profiles\", \"Employee Edit\", \"Employee Documents\"],\n    \"⏰ Time & Work\": [\"Attendance\", \"WFH / WFO\", \"Project Timesheets\", \"Comp-Off\"],\n    \"🌴 Leave & Approvals\": [\"Leave Management\", \"Leave Calendar\", \"Expense Claims\", \"Pending approvals\", \"Approval History\"],\n    \"💰 Payroll & Finance\": [\"Payroll\", \"Payroll Summary\", \"Payslips\"],\n    \"📈 Growth & Performance\": [\"Performance\", \"Analytics\", \"Learning Management\", \"Professional Certifications\", \"Employee Contributions\"],\n    \"💼 Talent & Operations\": [\"Recruitment\", \"Recruiter Interviews\", \"Background Verification\", \"Onboarding\", \"Onboarding Checklist\"],\n    \"⚙️ Admin & Records\": [\"Admin Profile\", \"Resignation alerts\", \"Exit Workflow\", \"Asset Requests\", \"Announcements\", \"HR Letter Templates\"],\n    \"📅 Events & People\": [\"Company Calendar\", \"Birthday Wishes\", \"Schedule Interviews\"],",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "employees_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "employees_df = load_employees()\nattendance_df = pd.DataFrame(fetch_all(\"SELECT * FROM attendance ORDER BY date DESC\"))\nwfh_df = pd.DataFrame(fetch_all(\"SELECT * FROM wfh ORDER BY date DESC\"))\ntimesheets_df = pd.DataFrame(fetch_all(\"SELECT * FROM timesheets ORDER BY date DESC\"))\ncompoff_df = pd.DataFrame(fetch_all(\"SELECT * FROM comp_off ORDER BY id DESC\"))\nresignations_df = pd.DataFrame(fetch_all(\"SELECT * FROM resignations ORDER BY date DESC\"))\nonboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "attendance_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "attendance_df = pd.DataFrame(fetch_all(\"SELECT * FROM attendance ORDER BY date DESC\"))\nwfh_df = pd.DataFrame(fetch_all(\"SELECT * FROM wfh ORDER BY date DESC\"))\ntimesheets_df = pd.DataFrame(fetch_all(\"SELECT * FROM timesheets ORDER BY date DESC\"))\ncompoff_df = pd.DataFrame(fetch_all(\"SELECT * FROM comp_off ORDER BY id DESC\"))\nresignations_df = pd.DataFrame(fetch_all(\"SELECT * FROM resignations ORDER BY date DESC\"))\nonboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "wfh_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "wfh_df = pd.DataFrame(fetch_all(\"SELECT * FROM wfh ORDER BY date DESC\"))\ntimesheets_df = pd.DataFrame(fetch_all(\"SELECT * FROM timesheets ORDER BY date DESC\"))\ncompoff_df = pd.DataFrame(fetch_all(\"SELECT * FROM comp_off ORDER BY id DESC\"))\nresignations_df = pd.DataFrame(fetch_all(\"SELECT * FROM resignations ORDER BY date DESC\"))\nonboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "timesheets_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "timesheets_df = pd.DataFrame(fetch_all(\"SELECT * FROM timesheets ORDER BY date DESC\"))\ncompoff_df = pd.DataFrame(fetch_all(\"SELECT * FROM comp_off ORDER BY id DESC\"))\nresignations_df = pd.DataFrame(fetch_all(\"SELECT * FROM resignations ORDER BY date DESC\"))\nonboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "compoff_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "compoff_df = pd.DataFrame(fetch_all(\"SELECT * FROM comp_off ORDER BY id DESC\"))\nresignations_df = pd.DataFrame(fetch_all(\"SELECT * FROM resignations ORDER BY date DESC\"))\nonboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "resignations_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "resignations_df = pd.DataFrame(fetch_all(\"SELECT * FROM resignations ORDER BY date DESC\"))\nonboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "onboarding_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "onboarding_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding ORDER BY date DESC\"))\nlearning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "learning_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "learning_df = pd.DataFrame(fetch_all(\"SELECT * FROM learning ORDER BY employee ASC\"))\ncerts_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "certs_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "certs_df = pd.DataFrame(fetch_all(\"SELECT * FROM certifications ORDER BY employee ASC\"))\ncontrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "contrib_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "contrib_df = pd.DataFrame(fetch_all(\"SELECT * FROM contributions ORDER BY employee ASC\"))\nrecruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "recruitment_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "recruitment_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruitment ORDER BY status ASC\"))\npayroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "payroll_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "payroll_df = pd.DataFrame(fetch_all(\"SELECT * FROM payroll ORDER BY name ASC\"))\nperformance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "performance_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "performance_df = pd.DataFrame(fetch_all(\"SELECT * FROM performance ORDER BY score DESC\"))\nleave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "leave_requests_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "leave_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM leave_requests ORDER BY start_date DESC\"))\nexpense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "expense_claims_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "expense_claims_df = pd.DataFrame(fetch_all(\"SELECT * FROM expense_claims ORDER BY submitted_on DESC\"))\nannouncements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "announcements_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "announcements_df = pd.DataFrame(fetch_all(\"SELECT * FROM announcements ORDER BY created_at DESC\"))\nasset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "asset_requests_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "asset_requests_df = pd.DataFrame(fetch_all(\"SELECT * FROM asset_requests ORDER BY requested_on DESC\"))\ndocument_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "document_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "document_df = pd.DataFrame(fetch_all(\"SELECT * FROM employee_documents ORDER BY uploaded_at DESC\"))\npayslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "payslip_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "payslip_df = pd.DataFrame(fetch_all(\"SELECT * FROM payslips ORDER BY generated_at DESC\"))\ninterview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "interview_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "interview_df = pd.DataFrame(fetch_all(\"SELECT * FROM recruiter_interviews ORDER BY interview_date DESC\"))\nbackground_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (\n    int((resignations_df[\"status\"] == \"Pending\").sum()) if not resignations_df.empty else 0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "background_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "background_df = pd.DataFrame(fetch_all(\"SELECT * FROM background_checks ORDER BY check_date DESC\"))\nonboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (\n    int((resignations_df[\"status\"] == \"Pending\").sum()) if not resignations_df.empty else 0\n) + (",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "onboarding_checklist_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "onboarding_checklist_df = pd.DataFrame(fetch_all(\"SELECT * FROM onboarding_checklists ORDER BY due_date ASC\"))\nexit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (\n    int((resignations_df[\"status\"] == \"Pending\").sum()) if not resignations_df.empty else 0\n) + (\n    int((leave_requests_df[\"status\"] == \"Pending\").sum()) if not leave_requests_df.empty else 0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "exit_workflow_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "exit_workflow_df = pd.DataFrame(fetch_all(\"SELECT * FROM exit_workflows ORDER BY resignation_date DESC\"))\nemail_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (\n    int((resignations_df[\"status\"] == \"Pending\").sum()) if not resignations_df.empty else 0\n) + (\n    int((leave_requests_df[\"status\"] == \"Pending\").sum()) if not leave_requests_df.empty else 0\n) + (",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "email_log_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "email_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 10\"))\n# ---------- Advanced Sidebar ----------\n_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (\n    int((resignations_df[\"status\"] == \"Pending\").sum()) if not resignations_df.empty else 0\n) + (\n    int((leave_requests_df[\"status\"] == \"Pending\").sum()) if not leave_requests_df.empty else 0\n) + (\n    int((expense_claims_df[\"status\"] == \"Pending\").sum()) if not expense_claims_df.empty else 0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_pending_approvals",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_pending_approvals = (\n    int((compoff_df[\"status\"] == \"Pending\").sum()) if not compoff_df.empty else 0\n) + (\n    int((resignations_df[\"status\"] == \"Pending\").sum()) if not resignations_df.empty else 0\n) + (\n    int((leave_requests_df[\"status\"] == \"Pending\").sum()) if not leave_requests_df.empty else 0\n) + (\n    int((expense_claims_df[\"status\"] == \"Pending\").sum()) if not expense_claims_df.empty else 0\n)\n_wfh_today = int((employees_df[\"work_mode\"] == \"WFH\").sum()) if not employees_df.empty else 0",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_wfh_today",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_wfh_today = int((employees_df[\"work_mode\"] == \"WFH\").sum()) if not employees_df.empty else 0\n_headcount = len(employees_df)\n_open_positions = int(recruitment_df[\"openings\"].sum()) if not recruitment_df.empty else 0\nrole = st.session_state.user_role\nuser_initial = st.session_state.user_email[:1].upper() if st.session_state.user_email else \"?\"\nnow = datetime.now()\n# Resolve the logged-in user's employee record (for the profile card)\n_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_headcount",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_headcount = len(employees_df)\n_open_positions = int(recruitment_df[\"openings\"].sum()) if not recruitment_df.empty else 0\nrole = st.session_state.user_role\nuser_initial = st.session_state.user_email[:1].upper() if st.session_state.user_email else \"?\"\nnow = datetime.now()\n# Resolve the logged-in user's employee record (for the profile card)\n_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_open_positions",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_open_positions = int(recruitment_df[\"openings\"].sum()) if not recruitment_df.empty else 0\nrole = st.session_state.user_role\nuser_initial = st.session_state.user_email[:1].upper() if st.session_state.user_email else \"?\"\nnow = datetime.now()\n# Resolve the logged-in user's employee record (for the profile card)\n_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "role",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "role = st.session_state.user_role\nuser_initial = st.session_state.user_email[:1].upper() if st.session_state.user_email else \"?\"\nnow = datetime.now()\n# Resolve the logged-in user's employee record (for the profile card)\n_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "user_initial",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "user_initial = st.session_state.user_email[:1].upper() if st.session_state.user_email else \"?\"\nnow = datetime.now()\n# Resolve the logged-in user's employee record (for the profile card)\n_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"\n    <div class=\"side-user-card\">",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "now",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "now = datetime.now()\n# Resolve the logged-in user's employee record (for the profile card)\n_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"\n    <div class=\"side-user-card\">\n        <div class=\"side-avatar\">{user_initial}</div>",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_my_emp",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_my_emp = employees_df[employees_df[\"email\"].str.lower() == st.session_state.user_email.lower()] if not employees_df.empty else pd.DataFrame()\n_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"\n    <div class=\"side-user-card\">\n        <div class=\"side-avatar\">{user_initial}</div>\n        <div>\n            <div style=\"font-weight:700; font-size:14px;\">{_my_name}</div>",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_my_name",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_my_name = _my_emp.iloc[0][\"name\"] if not _my_emp.empty else (\"Admin User\" if role == \"admin\" else st.session_state.user_email.split(\"@\")[0].title())\n_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"\n    <div class=\"side-user-card\">\n        <div class=\"side-avatar\">{user_initial}</div>\n        <div>\n            <div style=\"font-weight:700; font-size:14px;\">{_my_name}</div>\n            <span class=\"role-chip role-{role}\">{role}</span>",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_my_id",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_my_id = _my_emp.iloc[0][\"employee_id\"] if not _my_emp.empty else (\"ADM-001\" if role == \"admin\" else \"—\")\n_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"\n    <div class=\"side-user-card\">\n        <div class=\"side-avatar\">{user_initial}</div>\n        <div>\n            <div style=\"font-weight:700; font-size:14px;\">{_my_name}</div>\n            <span class=\"role-chip role-{role}\">{role}</span>\n        </div>",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_my_role_label",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_my_role_label = _my_emp.iloc[0][\"role\"] if not _my_emp.empty else role.title()\nst.sidebar.markdown(\n    f\"\"\"\n    <div class=\"side-user-card\">\n        <div class=\"side-avatar\">{user_initial}</div>\n        <div>\n            <div style=\"font-weight:700; font-size:14px;\">{_my_name}</div>\n            <span class=\"role-chip role-{role}\">{role}</span>\n        </div>\n    </div>",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "quick_actions",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "quick_actions = {\n    \"🕐 Mark Attendance\": \"Attendance\",\n    \"🌴 Request Leave\": \"Leave Management\",\n    \"⏱️ Log Timesheet\": \"Project Timesheets\",\n    \"🧾 My Payslip\": \"Payslips\",\n    \"📈 My Performance\": \"Performance\",\n}\nqa_cols = st.sidebar.columns(2)\nfor idx, (label, target) in enumerate(quick_actions.items()):\n    with qa_cols[idx % 2]:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "qa_cols",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "qa_cols = st.sidebar.columns(2)\nfor idx, (label, target) in enumerate(quick_actions.items()):\n    with qa_cols[idx % 2]:\n        if st.button(label, key=f\"qa_{idx}\", use_container_width=True):\n            go_to(target)\nst.sidebar.markdown(\"---\")\nif st.sidebar.button(\"🚪 Logout\", use_container_width=True):\n    st.session_state.logged_in = False\n    st.session_state.user_email = \"\"\n    st.session_state.user_role = \"\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "group_names",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "group_names = list(MENU_GROUPS.keys())\n# keep the widget state in sync when go_to() changes the group\nif st.session_state.get(\"cat_select\") not in group_names:\n    st.session_state.cat_select = st.session_state.get(\"selected_group\", group_names[0])\nselected_group = st.sidebar.selectbox(\"Category\", group_names, key=\"cat_select\")\nst.session_state.selected_group = selected_group\n# ---------- Slide-down search bar for pages inside categories ----------\nwith st.sidebar.expander(\"🔎 Search pages\", expanded=False):\n    nav_q = st.text_input(\"Search pages\", placeholder=\"Type to filter pages...\", key=\"nav_search\", label_visibility=\"collapsed\")\n    if nav_q.strip():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "selected_group",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "selected_group = st.sidebar.selectbox(\"Category\", group_names, key=\"cat_select\")\nst.session_state.selected_group = selected_group\n# ---------- Slide-down search bar for pages inside categories ----------\nwith st.sidebar.expander(\"🔎 Search pages\", expanded=False):\n    nav_q = st.text_input(\"Search pages\", placeholder=\"Type to filter pages...\", key=\"nav_search\", label_visibility=\"collapsed\")\n    if nav_q.strip():\n        _nq = nav_q.strip().lower()\n        _all_hits = [p for pages in MENU_GROUPS.values() for p in pages if _nq in p.lower()]\n        if _all_hits:\n            st.caption(f\"{len(_all_hits)} page(s) found\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "st.session_state.selected_group",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "st.session_state.selected_group = selected_group\n# ---------- Slide-down search bar for pages inside categories ----------\nwith st.sidebar.expander(\"🔎 Search pages\", expanded=False):\n    nav_q = st.text_input(\"Search pages\", placeholder=\"Type to filter pages...\", key=\"nav_search\", label_visibility=\"collapsed\")\n    if nav_q.strip():\n        _nq = nav_q.strip().lower()\n        _all_hits = [p for pages in MENU_GROUPS.values() for p in pages if _nq in p.lower()]\n        if _all_hits:\n            st.caption(f\"{len(_all_hits)} page(s) found\")\n            for hp in _all_hits[:10]:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "menu_container",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "menu_container = st.sidebar.container()\nwith menu_container:\n    for page in MENU_GROUPS[selected_group]:\n        active = st.session_state.selected_menu == page\n        btn_type = \"primary\" if active else \"secondary\"\n        if st.button(page, key=f\"nav_{page}\", use_container_width=True, type=btn_type):\n            st.session_state.selected_menu = page\n            st.rerun()\nselected_menu = st.session_state.selected_menu\ncan_manage_employees = st.session_state.user_role in [\"admin\", \"manager\"]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "selected_menu",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "selected_menu = st.session_state.selected_menu\ncan_manage_employees = st.session_state.user_role in [\"admin\", \"manager\"]\ncan_approve = st.session_state.user_role in [\"admin\", \"manager\"]\napproval_history_df = pd.DataFrame(fetch_all(\"SELECT * FROM approval_history ORDER BY id DESC\"))\ndef render_request_rows(df, table, id_col, name_col, detail_map, empty_msg=\"No requests found.\"):\n    \"\"\"Render request rows with Approve / Reject buttons in the LAST column.\"\"\"\n    if df.empty:\n        st.info(empty_msg)\n        return\n    for _, rrow in df.iterrows():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "can_manage_employees",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "can_manage_employees = st.session_state.user_role in [\"admin\", \"manager\"]\ncan_approve = st.session_state.user_role in [\"admin\", \"manager\"]\napproval_history_df = pd.DataFrame(fetch_all(\"SELECT * FROM approval_history ORDER BY id DESC\"))\ndef render_request_rows(df, table, id_col, name_col, detail_map, empty_msg=\"No requests found.\"):\n    \"\"\"Render request rows with Approve / Reject buttons in the LAST column.\"\"\"\n    if df.empty:\n        st.info(empty_msg)\n        return\n    for _, rrow in df.iterrows():\n        rid = rrow[id_col]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "can_approve",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "can_approve = st.session_state.user_role in [\"admin\", \"manager\"]\napproval_history_df = pd.DataFrame(fetch_all(\"SELECT * FROM approval_history ORDER BY id DESC\"))\ndef render_request_rows(df, table, id_col, name_col, detail_map, empty_msg=\"No requests found.\"):\n    \"\"\"Render request rows with Approve / Reject buttons in the LAST column.\"\"\"\n    if df.empty:\n        st.info(empty_msg)\n        return\n    for _, rrow in df.iterrows():\n        rid = rrow[id_col]\n        cells = st.columns([1.2] + [1.6] * (len(detail_map) - 1) + [0.7, 0.7])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "approval_history_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "approval_history_df = pd.DataFrame(fetch_all(\"SELECT * FROM approval_history ORDER BY id DESC\"))\ndef render_request_rows(df, table, id_col, name_col, detail_map, empty_msg=\"No requests found.\"):\n    \"\"\"Render request rows with Approve / Reject buttons in the LAST column.\"\"\"\n    if df.empty:\n        st.info(empty_msg)\n        return\n    for _, rrow in df.iterrows():\n        rid = rrow[id_col]\n        cells = st.columns([1.2] + [1.6] * (len(detail_map) - 1) + [0.7, 0.7])\n        for ci, (col_label, col_key) in enumerate(detail_map):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "email_log_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "email_log_df = pd.DataFrame(fetch_all(\"SELECT * FROM email_log ORDER BY id DESC LIMIT 5\"))\nif not email_log_df.empty:\n    st.sidebar.caption(\"Recent email log\")\n    st.sidebar.dataframe(email_log_df[[\"to_email\", \"subject\", \"status\"]], hide_index=True, use_container_width=True)",
+        "detail": "app",
+        "documentation": {}
+    }
+]

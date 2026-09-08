@@ -1,0 +1,101 @@
+employee_id,name,email,department,role,status,work_mode,manager,salary,phone,address,date_joined
+EMP-1000,Aarav Sharma,aarav.sharma@company.com,Engineering,Software Engineer,Active,WFH,Engineering Manager,55000,+91 9100000000,"Bengaluru, India",2022-01-01
+EMP-1001,Vivaan Reddy,vivaan.reddy@company.com,HR,HR Manager,Active,Office,HR Manager,57475,+91 9100012345,"Hyderabad, India",2023-02-02
+EMP-1002,Aditya Singh,aditya.singh@company.com,Finance,Payroll Specialist,Active,Hybrid,Finance Manager,59950,+91 9100024690,"Pune, India",2024-03-03
+EMP-1003,Vihaan Gupta,vihaan.gupta@company.com,Sales,Sales Lead,Active,WFH,Sales Manager,62425,+91 9100037035,"Delhi, India",2025-04-04
+EMP-1004,Ananya Jain,ananya.jain@company.com,Operations,Operations Analyst,Active,Office,Operations Manager,64900,+91 9100049380,"Chennai, India",2026-05-05
+EMP-1005,Diya Chopra,diya.chopra@company.com,Marketing,Content Strategist,Active,Hybrid,Marketing Manager,67375,+91 9100061725,"Mumbai, India",2022-06-06
+EMP-1006,Meher Rao,meher.rao@company.com,Support,IT Support Specialist,Active,WFH,Support Manager,69850,+91 9100074070,"Kolkata, India",2023-07-07
+EMP-1007,Ishaan Kulkarni,ishaan.kulkarni@company.com,Engineering,QA Analyst,Active,Office,Engineering Manager,72325,+91 9100086415,"Ahmedabad, India",2024-08-08
+EMP-1008,Naina Nadkarni,naina.nadkarni@company.com,HR,HR Executive,Active,Hybrid,HR Manager,74800,+91 9100098760,"Jaipur, India",2025-09-09
+EMP-1009,Kabir Mishra,kabir.mishra@company.com,Finance,Accountant,Active,WFH,Finance Manager,77275,+91 9100111105,"Noida, India",2026-10-10
+EMP-1010,Riya Bhatt,riya.bhatt@company.com,Sales,Business Development Manager,Active,Office,Sales Manager,79750,+91 9100123450,"Bengaluru, India",2022-11-11
+EMP-1011,Arjun Shah,arjun.shah@company.com,Operations,Logistics Lead,Active,Hybrid,Operations Manager,82225,+91 9100135795,"Hyderabad, India",2023-12-12
+EMP-1012,Saanvi Bhardwaj,saanvi.bhardwaj@company.com,Marketing,Marketing Executive,Active,WFH,Marketing Manager,84700,+91 9100148140,"Pune, India",2024-01-13
+EMP-1013,Aditi Narang,aditi.narang@company.com,Support,Customer Success Manager,Active,Office,Support Manager,87175,+91 9100160485,"Delhi, India",2025-02-14
+EMP-1014,Pranav Menon,pranav.menon@company.com,Engineering,Platform Engineer,Active,Hybrid,Engineering Manager,89650,+91 9100172830,"Chennai, India",2026-03-15
+EMP-1015,Kavya Kukreja,kavya.kukreja@company.com,HR,People Partner,Active,WFH,HR Manager,92125,+91 9100185175,"Mumbai, India",2022-04-16
+EMP-1016,Reyansh Sathya,reyansh.sathya@company.com,Finance,Finance Analyst,Active,Office,Finance Manager,94600,+91 9100197520,"Kolkata, India",2023-05-17
+EMP-1017,Sara Lal,sara.lal@company.com,Sales,Account Manager,Active,Hybrid,Sales Manager,97075,+91 9100209865,"Ahmedabad, India",2024-06-18
+EMP-1018,Yash Ahuja,yash.ahuja@company.com,Operations,Project Coordinator,Active,WFH,Operations Manager,99550,+91 9100222210,"Jaipur, India",2025-07-19
+EMP-1019,Mira Patel,mira.patel@company.com,Marketing,Growth Analyst,Active,Office,Marketing Manager,102025,+91 9100234555,"Noida, India",2026-08-20
+EMP-1020,Rohan Iyer,rohan.iyer@company.com,Support,Support Engineer,Active,Hybrid,Support Manager,104500,+91 9100246900,"Bengaluru, India",2022-09-21
+EMP-1021,Tanya Kapoor,tanya.kapoor@company.com,Engineering,Senior Developer,Active,WFH,Engineering Manager,106975,+91 9100259245,"Hyderabad, India",2023-10-22
+EMP-1022,Dhruv Das,dhruv.das@company.com,HR,Recruitment Specialist,Active,Office,HR Manager,109450,+91 9100271590,"Pune, India",2024-11-23
+EMP-1023,Pooja Mehta,pooja.mehta@company.com,Finance,Finance Manager,Active,Hybrid,Finance Manager,111925,+91 9100283935,"Delhi, India",2025-12-24
+EMP-1024,Neil Malhotra,neil.malhotra@company.com,Sales,Sales Executive,Active,WFH,Sales Manager,114400,+91 9100296280,"Chennai, India",2026-01-25
+EMP-1025,Aisha Sen,aisha.sen@company.com,Operations,Operations Manager,Active,Office,Operations Manager,116875,+91 9100308625,"Mumbai, India",2022-02-26
+EMP-1026,Rahul Agarwal,rahul.agarwal@company.com,Marketing,Brand Manager,Active,Hybrid,Marketing Manager,119350,+91 9100320970,"Kolkata, India",2023-03-27
+EMP-1027,Simran Saini,simran.saini@company.com,Support,Service Desk Analyst,Active,WFH,Support Manager,121825,+91 9100333315,"Ahmedabad, India",2024-04-28
+EMP-1028,Karan Arora,karan.arora@company.com,Engineering,Tech Lead,Active,Office,Engineering Manager,124300,+91 9100345660,"Jaipur, India",2025-05-01
+EMP-1029,Ira Pandey,ira.pandey@company.com,HR,HR Manager,Active,Hybrid,HR Manager,126775,+91 9100358005,"Noida, India",2026-06-02
+EMP-1030,Rishabh Gandhi,rishabh.gandhi@company.com,Finance,Payroll Specialist,Active,WFH,Finance Manager,129250,+91 9100370350,"Bengaluru, India",2022-07-03
+EMP-1031,Nandini Pillai,nandini.pillai@company.com,Sales,Sales Lead,Active,Office,Sales Manager,131725,+91 9100382695,"Hyderabad, India",2023-08-04
+EMP-1032,Harsh Suri,harsh.suri@company.com,Operations,Operations Analyst,Active,Hybrid,Operations Manager,134200,+91 9100395040,"Pune, India",2024-09-05
+EMP-1033,Sofia Vora,sofia.vora@company.com,Marketing,Content Strategist,Active,WFH,Marketing Manager,136675,+91 9100407385,"Delhi, India",2025-10-06
+EMP-1034,Dev Mohan,dev.mohan@company.com,Support,IT Support Specialist,Active,Office,Support Manager,139150,+91 9100419730,"Chennai, India",2026-11-07
+EMP-1035,Anika Purohit,anika.purohit@company.com,Engineering,Software Engineer,Active,Hybrid,Engineering Manager,141625,+91 9100432075,"Mumbai, India",2022-12-08
+EMP-1036,Kunal Kaur,kunal.kaur@company.com,HR,HR Executive,Active,WFH,HR Manager,144100,+91 9100444420,"Kolkata, India",2023-01-09
+EMP-1037,Charvi Verma,charvi.verma@company.com,Finance,Accountant,Active,Office,Finance Manager,146575,+91 9100456765,"Ahmedabad, India",2024-02-10
+EMP-1038,Manav Nair,manav.nair@company.com,Sales,Business Development Manager,Active,Hybrid,Sales Manager,149050,+91 9100469110,"Jaipur, India",2025-03-11
+EMP-1039,Tanvi Khan,tanvi.khan@company.com,Operations,Logistics Lead,Active,WFH,Operations Manager,151525,+91 9100481455,"Noida, India",2026-04-12
+EMP-1040,Aryan Roy,aryan.roy@company.com,Marketing,Marketing Executive,Active,Office,Marketing Manager,154000,+91 9100493800,"Bengaluru, India",2022-05-13
+EMP-1041,Zoya Saxena,zoya.saxena@company.com,Support,Customer Success Manager,Active,Hybrid,Support Manager,156475,+91 9100506145,"Hyderabad, India",2023-06-14
+EMP-1042,Jay Joshi,jay.joshi@company.com,Engineering,QA Analyst,Active,WFH,Engineering Manager,158950,+91 9100518490,"Pune, India",2024-07-15
+EMP-1043,Kiara Bose,kiara.bose@company.com,HR,People Partner,Active,Office,HR Manager,161425,+91 9100530835,"Delhi, India",2025-08-16
+EMP-1044,Abhinav Murthy,abhinav.murthy@company.com,Finance,Finance Analyst,Active,Hybrid,Finance Manager,163900,+91 9100543180,"Chennai, India",2026-09-17
+EMP-1045,Aanya Thakur,aanya.thakur@company.com,Sales,Account Manager,Active,WFH,Sales Manager,166375,+91 9100555525,"Mumbai, India",2022-10-18
+EMP-1046,Parth Yadav,parth.yadav@company.com,Operations,Project Coordinator,Active,Office,Operations Manager,168850,+91 9100567870,"Kolkata, India",2023-11-19
+EMP-1047,Esha Tiwari,esha.tiwari@company.com,Marketing,Growth Analyst,Active,Hybrid,Marketing Manager,171325,+91 9100580215,"Ahmedabad, India",2024-12-20
+EMP-1048,Ved Desai,ved.desai@company.com,Support,Support Engineer,Active,WFH,Support Manager,173800,+91 9100592560,"Jaipur, India",2025-01-21
+EMP-1049,Krisha Sethi,krisha.sethi@company.com,Engineering,Platform Engineer,Active,Office,Engineering Manager,176275,+91 9100604905,"Noida, India",2026-02-22
+EMP-1050,Mohit Venkatesh,mohit.venkatesh@company.com,HR,Recruitment Specialist,Active,Hybrid,HR Manager,178750,+91 9100617250,"Bengaluru, India",2022-03-23
+EMP-1051,Shruti Batra,shruti.batra@company.com,Finance,Finance Manager,Active,WFH,Finance Manager,181225,+91 9100629595,"Hyderabad, India",2023-04-24
+EMP-1052,Uday Dutta,uday.dutta@company.com,Sales,Sales Executive,Active,Office,Sales Manager,183700,+91 9100641940,"Pune, India",2024-05-25
+EMP-1053,Jiya Mangal,jiya.mangal@company.com,Operations,Operations Manager,Active,Hybrid,Operations Manager,186175,+91 9100654285,"Delhi, India",2025-06-26
+EMP-1054,Ashish Bhatia,ashish.bhatia@company.com,Marketing,Brand Manager,Active,WFH,Marketing Manager,188650,+91 9100666630,"Chennai, India",2026-07-27
+EMP-1055,Mitali Sharma,mitali.sharma@company.com,Support,Service Desk Analyst,Active,Office,Support Manager,191125,+91 9100678975,"Mumbai, India",2022-08-28
+EMP-1056,Nikhil Reddy,nikhil.reddy@company.com,Engineering,Senior Developer,Active,Hybrid,Engineering Manager,193600,+91 9100691320,"Kolkata, India",2023-09-01
+EMP-1057,Shreya Singh,shreya.singh@company.com,HR,HR Manager,Active,WFH,HR Manager,196075,+91 9100703665,"Ahmedabad, India",2024-10-02
+EMP-1058,Ritvik Gupta,ritvik.gupta@company.com,Finance,Payroll Specialist,Active,Office,Finance Manager,198550,+91 9100716010,"Jaipur, India",2025-11-03
+EMP-1059,Anvi Jain,anvi.jain@company.com,Sales,Sales Lead,Active,Hybrid,Sales Manager,56025,+91 9100728355,"Noida, India",2026-12-04
+EMP-1060,Tarun Chopra,tarun.chopra@company.com,Operations,Operations Analyst,Active,WFH,Operations Manager,58500,+91 9100740700,"Bengaluru, India",2022-01-05
+EMP-1061,Bhavna Rao,bhavna.rao@company.com,Marketing,Content Strategist,Active,Office,Marketing Manager,60975,+91 9100753045,"Hyderabad, India",2023-02-06
+EMP-1062,Sahil Kulkarni,sahil.kulkarni@company.com,Support,IT Support Specialist,Active,Hybrid,Support Manager,63450,+91 9100765390,"Pune, India",2024-03-07
+EMP-1063,Rhea Nadkarni,rhea.nadkarni@company.com,Engineering,Tech Lead,Active,WFH,Engineering Manager,65925,+91 9100777735,"Delhi, India",2025-04-08
+EMP-1064,Vansh Mishra,vansh.mishra@company.com,HR,HR Executive,Active,Office,HR Manager,68400,+91 9100790080,"Chennai, India",2026-05-09
+EMP-1065,Gargi Bhatt,gargi.bhatt@company.com,Finance,Accountant,Active,Hybrid,Finance Manager,70875,+91 9100802425,"Mumbai, India",2022-06-10
+EMP-1066,Ojas Shah,ojas.shah@company.com,Sales,Business Development Manager,Active,WFH,Sales Manager,73350,+91 9100814770,"Kolkata, India",2023-07-11
+EMP-1067,Sakshi Bhardwaj,sakshi.bhardwaj@company.com,Operations,Logistics Lead,Active,Office,Operations Manager,75825,+91 9100827115,"Ahmedabad, India",2024-08-12
+EMP-1068,Aman Narang,aman.narang@company.com,Marketing,Marketing Executive,Active,Hybrid,Marketing Manager,78300,+91 9100839460,"Jaipur, India",2025-09-13
+EMP-1069,Vaishnavi Menon,vaishnavi.menon@company.com,Support,Customer Success Manager,Active,WFH,Support Manager,80775,+91 9100851805,"Noida, India",2026-10-14
+EMP-1070,Adwait Kukreja,adwait.kukreja@company.com,Engineering,Software Engineer,Active,Office,Engineering Manager,83250,+91 9100864150,"Bengaluru, India",2022-11-15
+EMP-1071,Nikita Sathya,nikita.sathya@company.com,HR,People Partner,Active,Hybrid,HR Manager,85725,+91 9100876495,"Hyderabad, India",2023-12-16
+EMP-1072,Himanshu Lal,himanshu.lal@company.com,Finance,Finance Analyst,Active,WFH,Finance Manager,88200,+91 9100888840,"Pune, India",2024-01-17
+EMP-1073,Palak Ahuja,palak.ahuja@company.com,Sales,Account Manager,Active,Office,Sales Manager,90675,+91 9100901185,"Delhi, India",2025-02-18
+EMP-1074,Naman Patel,naman.patel@company.com,Operations,Project Coordinator,Active,Hybrid,Operations Manager,93150,+91 9100913530,"Chennai, India",2026-03-19
+EMP-1075,Khushi Iyer,khushi.iyer@company.com,Marketing,Growth Analyst,Active,WFH,Marketing Manager,95625,+91 9100925875,"Mumbai, India",2022-04-20
+EMP-1076,Rudra Kapoor,rudra.kapoor@company.com,Support,Support Engineer,Active,Office,Support Manager,98100,+91 9100938220,"Kolkata, India",2023-05-21
+EMP-1077,Ishita Das,ishita.das@company.com,Engineering,QA Analyst,Active,Hybrid,Engineering Manager,100575,+91 9100950565,"Ahmedabad, India",2024-06-22
+EMP-1078,Chetan Mehta,chetan.mehta@company.com,HR,Recruitment Specialist,Active,WFH,HR Manager,103050,+91 9100962910,"Jaipur, India",2025-07-23
+EMP-1079,Disha Malhotra,disha.malhotra@company.com,Finance,Finance Manager,Active,Office,Finance Manager,105525,+91 9100975255,"Noida, India",2026-08-24
+EMP-1080,Varun Sen,varun.sen@company.com,Sales,Sales Executive,Active,Hybrid,Sales Manager,108000,+91 9100987600,"Bengaluru, India",2022-09-25
+EMP-1081,Jasmine Agarwal,jasmine.agarwal@company.com,Operations,Operations Manager,Active,WFH,Operations Manager,110475,+91 9100999945,"Hyderabad, India",2023-10-26
+EMP-1082,Tejas Saini,tejas.saini@company.com,Marketing,Brand Manager,Active,Office,Marketing Manager,112950,+91 9101012290,"Pune, India",2024-11-27
+EMP-1083,Samaira Arora,samaira.arora@company.com,Support,Service Desk Analyst,Active,Hybrid,Support Manager,115425,+91 9101024635,"Delhi, India",2025-12-28
+EMP-1084,Kartik Pandey,kartik.pandey@company.com,Engineering,Platform Engineer,Active,WFH,Engineering Manager,117900,+91 9101036980,"Chennai, India",2026-01-01
+EMP-1085,Aarohi Gandhi,aarohi.gandhi@company.com,HR,HR Manager,Active,Office,HR Manager,120375,+91 9101049325,"Mumbai, India",2022-02-02
+EMP-1086,Yuvraj Pillai,yuvraj.pillai@company.com,Finance,Payroll Specialist,Active,Hybrid,Finance Manager,122850,+91 9101061670,"Kolkata, India",2023-03-03
+EMP-1087,Arihant Suri,arihant.suri@company.com,Sales,Sales Lead,Active,WFH,Sales Manager,125325,+91 9101074015,"Ahmedabad, India",2024-04-04
+EMP-1088,Manya Vora,manya.vora@company.com,Operations,Operations Analyst,Active,Office,Operations Manager,127800,+91 9101086360,"Jaipur, India",2025-05-05
+EMP-1089,Vikram Mohan,vikram.mohan@company.com,Marketing,Content Strategist,Active,Hybrid,Marketing Manager,130275,+91 9101098705,"Noida, India",2026-06-06
+EMP-1090,Pallavi Purohit,pallavi.purohit@company.com,Support,IT Support Specialist,Active,WFH,Support Manager,132750,+91 9101111050,"Bengaluru, India",2022-07-07
+EMP-1091,Malhar Kaur,malhar.kaur@company.com,Engineering,Senior Developer,Active,Office,Engineering Manager,135225,+91 9101123395,"Hyderabad, India",2023-08-08
+EMP-1092,Suhani Verma,suhani.verma@company.com,HR,HR Executive,Active,Hybrid,HR Manager,137700,+91 9101135740,"Pune, India",2024-09-09
+EMP-1093,Rajan Nair,rajan.nair@company.com,Finance,Accountant,Active,WFH,Finance Manager,140175,+91 9101148085,"Delhi, India",2025-10-10
+EMP-1094,Ayesha Khan,ayesha.khan@company.com,Sales,Business Development Manager,Active,Office,Sales Manager,142650,+91 9101160430,"Chennai, India",2026-11-11
+EMP-1095,Rudransh Roy,rudransh.roy@company.com,Operations,Logistics Lead,Active,Hybrid,Operations Manager,145125,+91 9101172775,"Mumbai, India",2022-12-12
+EMP-1096,Prerna Saxena,prerna.saxena@company.com,Marketing,Marketing Executive,Active,WFH,Marketing Manager,147600,+91 9101185120,"Kolkata, India",2023-01-13
+EMP-1097,Siddharth Joshi,siddharth.joshi@company.com,Support,Customer Success Manager,Active,Office,Support Manager,150075,+91 9101197465,"Ahmedabad, India",2024-02-14
+EMP-1098,Sneha Bose,sneha.bose@company.com,Engineering,Tech Lead,Active,Hybrid,Engineering Manager,152550,+91 9101209810,"Jaipur, India",2025-03-15
+EMP-1099,Deepak Murthy,deepak.murthy@company.com,HR,People Partner,Active,WFH,HR Manager,155025,+91 9101222155,"Noida, India",2026-04-16

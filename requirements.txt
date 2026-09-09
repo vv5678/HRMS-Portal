@@ -10,3 +10,15 @@ openpyxl
 reportlab
 bcrypt
 python-dateutil
+import io
+import json
+import os
+import sqlite3
+import smtplib
+from email.message import EmailMessage
+from pathlib import Path
+from datetime import datetime
+
+import pandas as pd
+import plotly.express as px
+import streamlit as st

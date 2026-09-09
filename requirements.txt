@@ -1,17 +1,4 @@
-Flask
-Werkzeug
-Flask-SQLAlchemy
-Flask-Cors
-gunicorn
-python-dotenv
-requests
-pandas
-openpyxl
-reportlab
-bcrypt
-plotly
-python-dateutil
-import io
+
 import json
 import os
 import sqlite3

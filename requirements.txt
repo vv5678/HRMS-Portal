@@ -1,0 +1,10 @@
+Flask
+Werkzeug
+Flask-SQLAlchemy
+Flask-Cors
+gunicorn
+python-dotenv
+requests
+openpyxl
+reportlab
+bcrypt

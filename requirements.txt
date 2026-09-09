@@ -9,6 +9,7 @@ pandas
 openpyxl
 reportlab
 bcrypt
+plotly
 python-dateutil
 import io
 import json

@@ -49,6 +49,7 @@ MENU_OPTIONS = [
     "HR Letter Templates",
     "Pending approvals",
     "Approval History",
+    "Admin / HR Portal",
 ]
 
 
@@ -60,7 +61,7 @@ MENU_GROUPS = {
     "💰 Payroll & Finance": ["Payroll", "Payroll Summary", "Payslips"],
     "📈 Growth & Performance": ["Performance", "Analytics", "Learning Management", "Professional Certifications", "Employee Contributions"],
     "💼 Talent & Operations": ["Recruitment", "Recruiter Interviews", "Background Verification", "Onboarding", "Onboarding Checklist"],
-    "⚙️ Admin & Records": ["Admin Profile", "Resignation alerts", "Exit Workflow", "Asset Requests", "Announcements", "HR Letter Templates"],
+    "⚙️ Admin & Records": ["Admin / HR Portal", "Admin Profile", "Resignation alerts", "Exit Workflow", "Asset Requests", "Announcements", "HR Letter Templates"],
     "📅 Events & People": ["Company Calendar", "Birthday Wishes", "Schedule Interviews"],
 }
 
@@ -332,6 +333,18 @@ def init_db():
             status TEXT,
             details TEXT,
             created_at TEXT
+        )
+        """
+    )
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS policies (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT,
+            category TEXT,
+            description TEXT,
+            effective_from TEXT,
+            status TEXT
         )
         """
     )
@@ -812,10 +825,11 @@ def render_css():
                 margin-bottom: 1rem;
             }
             .profile-box {
-                background: linear-gradient(120deg, #7c3aed 0%, #ec4899 50%, #f59e0b 100%);
-                border-radius: 20px;
+                background: linear-gradient(120deg, #eff6ff 0%, #e0e7ff 100%);
+                border: 1px solid #dbe3f0;
+                border-radius: 18px;
                 padding: 1.1rem 1.2rem;
-                color: white;
+                color: #1f2937;
                 margin-bottom: 1rem;
             }
             .metric-box {
@@ -882,50 +896,44 @@ def render_css():
                 margin-top: 10px;
             }
             section[data-testid="stSidebar"] {
-                background:
-                    radial-gradient(circle at 20% 8%, rgba(236,72,153,0.35), transparent 45%),
-                    radial-gradient(circle at 85% 30%, rgba(14,165,233,0.30), transparent 40%),
-                    radial-gradient(circle at 50% 95%, rgba(245,158,11,0.30), transparent 45%),
-                    linear-gradient(180deg, #1e1040 0%, #3b1366 40%, #4c1d95 70%, #701a4d 100%);
+                background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+                border-right: 1px solid #e5e7eb;
             }
             section[data-testid="stSidebar"] .stRadio label:hover {
-                background: rgba(255,255,255,0.15);
+                background: #eef2ff;
                 border-radius: 8px;
             }
             section[data-testid="stSidebar"] * {
-                color: #ffffff !important;
+                color: #1f2937 !important;
             }
             section[data-testid="stSidebar"] hr {
                 border: none;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, #ec4899, #0ea5e9, transparent);
-                opacity: 0.8;
+                height: 1px;
+                background: #e5e7eb;
+                opacity: 1;
             }
             .side-user-card {
-                background: rgba(255,255,255,0.12);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                border: 1px solid rgba(255,255,255,0.25);
-                border-radius: 18px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 16px;
                 padding: 14px;
                 display: flex;
                 align-items: center;
                 gap: 12px;
-                box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+                box-shadow: 0 2px 10px rgba(16,24,40,0.06);
                 margin-bottom: 10px;
             }
             .side-avatar {
                 width: 54px;
                 height: 54px;
                 border-radius: 50%;
-                background: linear-gradient(135deg, #f59e0b, #ec4899, #7c3aed);
+                background: linear-gradient(135deg, #1d4ed8, #3b82f6);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 26px;
                 font-weight: 800;
                 color: #fff !important;
-                box-shadow: 0 4px 12px rgba(236,72,153,0.5);
                 flex-shrink: 0;
             }
             .side-user-card .role-chip {
@@ -938,14 +946,13 @@ def render_css():
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
             }
-            .role-admin { background: linear-gradient(90deg, #f59e0b, #ef4444); }
-            .role-manager { background: linear-gradient(90deg, #0ea5e9, #10b981); }
-            .role-employee { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+            .role-admin { background: #fef3c7; color: #92400e !important; }
+            .role-manager { background: #dbeafe; color: #1e40af !important; }
+            .role-employee { background: #dcfce7; color: #166534 !important; }
             .side-stat {
-                background: rgba(255,255,255,0.10);
-                backdrop-filter: blur(8px);
-                border: 1px solid rgba(255,255,255,0.18);
-                border-radius: 14px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
                 padding: 10px 12px;
                 margin-bottom: 8px;
                 display: flex;
@@ -954,31 +961,29 @@ def render_css():
                 transition: background 0.2s ease, transform 0.2s ease;
             }
             .side-stat:hover {
-                background: rgba(255,255,255,0.20);
+                background: #f0f6ff;
                 transform: translateX(4px);
             }
             .side-stat .num {
                 font-size: 20px;
                 font-weight: 800;
-                background: linear-gradient(90deg, #fbbf24, #f472b6, #38bdf8);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent !important;
-                -webkit-text-fill-color: transparent;
+                color: #1d4ed8 !important;
             }
             .side-alert {
-                background: linear-gradient(120deg, rgba(239,68,68,0.35), rgba(245,158,11,0.30));
-                border: 1px solid rgba(251,191,36,0.5);
-                border-radius: 14px;
+                background: #fffbeb;
+                border: 1px solid #fde68a;
+                color: #92400e;
+                border-radius: 12px;
                 padding: 10px 12px;
                 margin-bottom: 10px;
                 font-size: 13px;
                 animation: sidePulse 2.5s ease-in-out infinite;
             }
             .side-ok {
-                background: linear-gradient(120deg, rgba(16,185,129,0.30), rgba(14,165,233,0.25));
-                border: 1px solid rgba(52,211,153,0.45);
-                border-radius: 14px;
+                background: #f0fdf4;
+                border: 1px solid #bbf7d0;
+                color: #166534;
+                border-radius: 12px;
                 padding: 10px 12px;
                 margin-bottom: 10px;
                 font-size: 13px;
@@ -989,9 +994,9 @@ def render_css():
             }
             .side-clock {
                 text-align: center;
-                background: rgba(0,0,0,0.25);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 14px;
+                background: #f8fafc;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
                 padding: 10px;
                 margin-bottom: 12px;
                 font-variant-numeric: tabular-nums;
@@ -1000,13 +1005,9 @@ def render_css():
                 font-size: 26px;
                 font-weight: 800;
                 letter-spacing: 1px;
-                background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent !important;
-                -webkit-text-fill-color: transparent;
+                color: #0f172a !important;
             }
-            .side-clock .date { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+            .side-clock .date { font-size: 12px; color: #64748b !important; margin-top: 2px; }
             .side-footer {
                 margin-top: 14px;
                 text-align: center;
@@ -1016,40 +1017,42 @@ def render_css():
             }
             .stButton > button {
                 border-radius: 10px;
-                background: linear-gradient(120deg, #7c3aed, #ec4899, #f97316);
-                background-size: 200% auto;
+                background: #1d4ed8 !important;
+                background-size: auto !important;
                 color: white;
                 font-weight: 700;
                 border: none;
-                transition: background-position 0.3s ease;
+                transition: all 0.2s ease;
             }
             .stButton > button[data-baseweb="button"] { width: 100%; }
             section[data-testid="stSidebar"] .stButton > button {
-                background: rgba(255,255,255,0.10);
-                border: 1px solid rgba(255,255,255,0.20);
-                color: #ffffff !important;
+                background: #ffffff !important;
+                border: 1px solid #e5e7eb !important;
+                color: #1f2937 !important;
                 text-align: left;
                 font-weight: 600;
-                border-radius: 12px;
+                border-radius: 10px;
             }
             section[data-testid="stSidebar"] .stButton > button:hover {
-                background: rgba(255,255,255,0.22);
+                background: #eef2ff !important;
+                border-color: #93c5fd !important;
                 transform: translateX(3px);
             }
             section[data-testid="stSidebar"] .stButton > button[kind="primary"],
             section[data-testid="stSidebar"] .stButton > button[data-testid="stBaseButton-primary"] {
-                background: linear-gradient(120deg, #ec4899, #8b5cf6, #0ea5e9) !important;
+                background: #1d4ed8 !important;
                 border: none !important;
-                box-shadow: 0 4px 14px rgba(236,72,153,0.45);
-                font-weight: 800;
+                color: #ffffff !important;
+                box-shadow: 0 2px 10px rgba(29,78,216,0.25);
+                font-weight: 700;
             }
             .stButton > button:hover {
-                background-position: right center;
-                box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
+                background: #1e40af !important;
+                box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35);
             }
             .stDownloadButton > button {
                 border-radius: 10px;
-                background: linear-gradient(120deg, #10b981, #0ea5e9);
+                background: #059669 !important;
                 color: white;
                 font-weight: 700;
                 border: none;
@@ -1060,30 +1063,29 @@ def render_css():
             /* ================= AURORA GLASS PREMIUM THEME ================= */
             .stApp {
                 background:
-                    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(124,58,237,0.28), transparent),
-                    radial-gradient(ellipse 70% 45% at 95% 5%, rgba(14,165,233,0.22), transparent),
-                    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(236,72,153,0.20), transparent),
-                    linear-gradient(160deg, #070714 0%, #0d0d24 45%, #120b2e 100%) !important;
+                    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(37,99,235,0.06), transparent),
+                    radial-gradient(ellipse 70% 45% at 95% 5%, rgba(14,165,233,0.06), transparent),
+                    linear-gradient(160deg, #f8fafc 0%, #f1f5f9 100%) !important;
                 background-attachment: fixed;
             }
             .stApp, .stApp p, .stApp label, .stApp span, .stApp div {
-                color: #e7e9f5;
+                color: #1f2937;
             }
             h1, .stApp h1 {
-                background: linear-gradient(90deg, #a78bfa, #f472b6, #38bdf8) !important;
-                -webkit-background-clip: text !important;
-                background-clip: text !important;
+                background: none !important;
+                -webkit-text-fill-color: #0f172a !important;
+                color: #0f172a !important;
+                font-weight: 800;
             }
-            h2, .stApp h2 { color: #c4b5fd !important; }
-            h3, .stApp h3 { color: #7dd3fc !important; }
-            .stApp .stCaption, .stApp small, .stApp .stMarkdownContainer em { color: #9aa0c3 !important; }
+            h2, .stApp h2 { color: #0f172a !important; }
+            h3, .stApp h3 { color: #1d4ed8 !important; }
+            .stApp .stCaption, .stApp small, .stApp .stMarkdownContainer em { color: #64748b !important; }
             .card, .letter-box {
-                background: rgba(255,255,255,0.05) !important;
-                border: 1px solid rgba(255,255,255,0.12) !important;
-                backdrop-filter: blur(14px);
-                -webkit-backdrop-filter: blur(14px);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.35) !important;
-                color: #e7e9f5 !important;
+                background: #ffffff !important;
+                border: 1px solid #e5e7eb !important;
+                backdrop-filter: none;
+                box-shadow: 0 2px 10px rgba(16,24,40,0.06) !important;
+                color: #1f2937 !important;
             }
             .stDataFrame, [data-testid="stDataFrame"] {
                 background: rgba(255,255,255,0.04);
@@ -1091,7 +1093,7 @@ def render_css():
                 border-radius: 14px;
                 overflow: hidden;
             }
-            [data-testid="stDataFrame"] iframe { filter: invert(0.92) hue-rotate(180deg); border-radius: 14px; }
+            [data-testid="stDataFrame"] iframe { filter: none; border-radius: 14px; }
             .stTextInput input, .stTextArea textarea, .stNumberInput input,
             .stSelectbox > div > div, .stMultiSelect > div > div,
             [data-baseweb="select"] > div, [data-baseweb="input"] > div {
@@ -1100,23 +1102,24 @@ def render_css():
                 border-radius: 10px !important;
                 color: #e7e9f5 !important;
             }
-            [data-baseweb="popover"] *, [role="listbox"] * { background: #14142e !important; color: #e7e9f5 !important; }
+            [data-baseweb="popover"] *, [role="listbox"] * { background: #ffffff !important; color: #1f2937 !important; }
+            [data-baseweb="popover"] li:hover { background: #eef2ff !important; }
             .stDateInput input, .stTimeInput input {
-                background: rgba(255,255,255,0.06) !important;
-                color: #e7e9f5 !important;
-                border: 1px solid rgba(255,255,255,0.14) !important;
+                background: #ffffff !important;
+                color: #1f2937 !important;
+                border: 1px solid #d1d5db !important;
             }
             [data-testid="stExpander"] {
-                background: rgba(255,255,255,0.04);
-                border: 1px solid rgba(255,255,255,0.12);
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
                 border-radius: 14px;
             }
-            [data-testid="stExpanderDetails"] { color: #e7e9f5; }
+            [data-testid="stExpanderDetails"] { color: #1f2937; }
             .stTabs [data-baseweb="tab-list"] {
-                background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.10);
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
             }
-            .stTabs [data-baseweb="tab"] { color: #c4b5fd !important; }
+            .stTabs [data-baseweb="tab"] { color: #374151 !important; }
             .stSlider > div { color: #e7e9f5; }
             .stButton > button {
                 background: linear-gradient(120deg, #7c3aed, #db2777, #f59e0b) !important;
@@ -1129,34 +1132,31 @@ def render_css():
             }
             .stForm { border: none !important; }
             ::-webkit-scrollbar { width: 10px; height: 10px; }
-            ::-webkit-scrollbar-track { background: #0d0d24; }
-            ::-webkit-scrollbar-thumb {
-                background: linear-gradient(180deg, #7c3aed, #ec4899);
-                border-radius: 6px;
-            }
-            ::selection { background: rgba(236,72,153,0.4); }
+            ::-webkit-scrollbar-track { background: #eef1f6; }
+            ::-webkit-scrollbar-thumb { background: #94a3b8; }
+            ::selection { background: rgba(29,78,216,0.25); }
+            .stApp a { color: #1d4ed8 !important; }
+            .stApp code { background: #f1f5f9 !important; color: #b45309 !important; }
             .hero-banner {
                 background:
-                    radial-gradient(circle at 15% 20%, rgba(56,189,248,0.35), transparent 40%),
-                    radial-gradient(circle at 85% 30%, rgba(236,72,153,0.35), transparent 40%),
-                    linear-gradient(120deg, rgba(124,58,237,0.85), rgba(219,39,119,0.75) 55%, rgba(245,158,11,0.7));
-                border-radius: 24px;
-                padding: 26px 30px;
-                color: #fff !important;
-                box-shadow: 0 14px 40px rgba(124,58,237,0.45);
+                    radial-gradient(circle at 15% 20%, rgba(56,189,248,0.18), transparent 40%),
+                    radial-gradient(circle at 85% 30%, rgba(99,102,241,0.15), transparent 40%),
+                    linear-gradient(120deg, #eff6ff 0%, #e0e7ff 55%, #dbeafe 100%) !important;
+                border: 1px solid #dbe3f0 !important;
+                border-radius: 20px;
+                padding: 26px 30px !important;
+                box-shadow: 0 4px 18px rgba(15,31,75,0.08) !important;
                 margin-bottom: 18px;
-                border: 1px solid rgba(255,255,255,0.25);
             }
-            .hero-banner h1 { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; margin: 0; }
-            .hero-banner p { color: rgba(255,255,255,0.92) !important; margin: 6px 0 0; }
+            .hero-banner h1 { color: #0f172a !important; -webkit-text-fill-color: #0f172a !important; background: none !important; margin: 0; }
+            .hero-banner p { color: #475569 !important; margin: 6px 0 0; }
             .glass-panel {
-                background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.12);
-                backdrop-filter: blur(14px);
-                -webkit-backdrop-filter: blur(14px);
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                backdrop-filter: none;
                 border-radius: 18px;
                 padding: 18px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+                box-shadow: 0 2px 10px rgba(16,24,40,0.06);
             }
             @keyframes floatGlow {
                 0%,100% { box-shadow: 0 10px 30px rgba(124,58,237,0.35); }
@@ -1166,8 +1166,6 @@ def render_css():
             [data-testid="stHeader"] {
                 background: transparent;
             }
-            [data-testid="stDecoration"] { display: none; }
-            #MainMenu { visibility: hidden; }
             section[data-testid="stSidebar"] .side-clock .time {
                 font-variant-numeric: tabular-nums;
             }
@@ -1175,8 +1173,8 @@ def render_css():
             .stApp code { background: rgba(255,255,255,0.08) !important; color: #fbbf24 !important; }
             /* ================= SIMPLE CLEAN WEBSITE THEME (final layer) ================= */
             .stApp {
-                background: #f5f7fb !important;
-                background-attachment: scroll;
+                background: linear-gradient(160deg, #fafbff 0%, #f4f8ff 45%, #f6fbff 100%) !important;
+                background-attachment: fixed;
             }
             .stApp, .stApp p, .stApp label, .stApp span, .stApp div {
                 color: #1f2937;
@@ -1268,7 +1266,8 @@ def render_css():
             .stDownloadButton > button { background: #059669 !important; box-shadow: none; }
             .stDownloadButton > button:hover { background: #047857 !important; }
             section[data-testid="stSidebar"] {
-                background: #111c3d !important;
+                background: #ffffff !important;
+                border-right: 1px solid #e5e7eb !important;
             }
             ::-webkit-scrollbar-track { background: #eef1f6; }
             ::-webkit-scrollbar-thumb { background: #94a3b8; }
@@ -1286,13 +1285,14 @@ def render_css():
             .hero-banner p { color: rgba(255,255,255,0.85) !important; font-size: 17px; }
             .hero-chips { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
             .hero-chip {
-                background: rgba(255,255,255,0.14);
-                border: 1px solid rgba(255,255,255,0.25);
+                background: #ffffff;
+                border: 1px solid #dbe3f0;
                 border-radius: 999px;
                 padding: 8px 18px;
-                color: #ffffff !important;
+                color: #1d4ed8 !important;
                 font-weight: 600;
                 font-size: 14px;
+                box-shadow: 0 2px 8px rgba(15,31,75,0.06);
             }
             .section-title {
                 font-size: 1.6rem; font-weight: 800; color: #111827 !important;
@@ -1413,17 +1413,24 @@ def render_css():
             .rank-score { font-weight: 800; color: #1d4ed8; }
             /* marquee ticker */
             .ticker-wrap {
-                background: #111c3d; border-radius: 12px;
-                overflow: hidden; padding: 10px 0; margin-bottom: 8px;
+                background: #eef2ff;
+                border: 1px solid #dbe3f0;
+                border-radius: 12px;
+                overflow: hidden;
+                padding: 10px 0;
+                margin-bottom: 8px;
             }
             .ticker {
-                display: inline-block; white-space: nowrap;
+                display: inline-block;
+                white-space: nowrap;
                 animation: tickerScroll 30s linear infinite;
-                color: #ffffff !important; font-weight: 600; font-size: 14px;
+                color: #1e3a8a !important;
+                font-weight: 600;
+                font-size: 14px;
                 padding-left: 100%;
             }
-            .ticker span { margin: 0 28px; color: #ffffff !important; }
-            .ticker .tick-dot { color: #60a5fa !important; }
+            .ticker span { margin: 0 28px; color: #1e3a8a !important; }
+            .ticker .tick-dot { color: #2563eb !important; }
             @keyframes tickerScroll {
                 0% { transform: translateX(0); }
                 100% { transform: translateX(-100%); }
@@ -1449,33 +1456,244 @@ for _k, _v in (("user_email", ""), ("user_role", "")):
         st.session_state[_k] = _v
 
 if not st.session_state.logged_in:
-    st.markdown("""
-    <div style="text-align:center; margin-top:6vh;">
-        <div style="font-size:64px; line-height:1;">🏢</div>
-        <h1 style="font-size:2.6rem; margin:6px 0;">BluePeak <span style="background:linear-gradient(90deg,#a78bfa,#f472b6,#38bdf8); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">HRMS</span></h1>
-        <p style="color:#9aa0c3;">Enterprise Human Resource Management · v3.0 Aurora</p>
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown('<div class="card" style="max-width:520px; margin:4vh auto; padding:2rem;">', unsafe_allow_html=True)
-    st.caption("Demo credentials: admin@company.com / admin123 | manager@company.com / manager123 | employee@company.com / employee123")
-    with st.form("login_form"):
-        username = st.text_input("Email")
-        password = st.text_input("Password", type="password")
-        login = st.form_submit_button("Login")
+    if "login_attempts" not in st.session_state:
+        st.session_state.login_attempts = 0
+
+    # ---- Login screen styling (clean centered card) ----
+    st.markdown(
+        """
+        <style>
+            .stApp {
+                background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 50%, #eff6ff 100%) !important;
+                overflow: hidden;
+            }
+            [data-testid="stHeader"] { background: transparent; }
+            .block-container { padding-top: 8vh !important; max-width: 460px !important; margin: 0 auto; }
+            /* ===== animated background blobs ===== */
+            .bg-blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+            .blob {
+                position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55;
+                animation: blobFloat 18s ease-in-out infinite alternate;
+            }
+            .blob.b1 { width: 380px; height: 380px; background: #bfdbfe; top: -80px; left: -80px; }
+            .blob.b2 { width: 320px; height: 320px; background: #ddd6fe; bottom: -60px; right: -60px; animation-delay: -6s; animation-duration: 22s; }
+            .blob.b3 { width: 260px; height: 260px; background: #cffafe; top: 45%; left: 60%; animation-delay: -12s; animation-duration: 26s; }
+            .blob.b4 { width: 200px; height: 200px; background: #fce7f3; top: 15%; right: 12%; animation-delay: -3s; animation-duration: 20s; }
+            @keyframes blobFloat {
+                0%   { transform: translate(0, 0) scale(1); }
+                33%  { transform: translate(40px, -30px) scale(1.08); }
+                66%  { transform: translate(-30px, 25px) scale(0.94); }
+                100% { transform: translate(20px, -20px) scale(1.04); }
+            }
+            /* subtle grid overlay */
+            .bg-grid {
+                position: fixed; inset: 0; z-index: 0; pointer-events: none;
+                background-image: linear-gradient(rgba(148,163,184,0.10) 1px, transparent 1px),
+                                  linear-gradient(90deg, rgba(148,163,184,0.10) 1px, transparent 1px);
+                background-size: 44px 44px;
+                mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+                -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+            }
+            .login-card {
+                position: relative; z-index: 1;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 18px;
+                padding: 34px 32px 26px;
+                box-shadow: 0 12px 40px rgba(15,23,42,0.08);
+                animation: loginRise 0.4s ease both;
+                color: #1f2937 !important;
+            }
+            @keyframes loginRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+            .login-logo {
+                width: 58px; height: 58px; border-radius: 16px;
+                background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+                display: flex; align-items: center; justify-content: center;
+                font-size: 28px; margin: 0 auto 14px;
+                box-shadow: 0 6px 18px rgba(29,78,216,0.3);
+            }
+            .login-card h1 {
+                text-align: center; font-size: 1.5rem; font-weight: 800;
+                color: #0f172a !important; -webkit-text-fill-color: #0f172a !important;
+                margin: 0 0 4px;
+            }
+            .login-card .sub {
+                text-align: center; color: #64748b !important;
+                font-size: 13.5px; margin-bottom: 22px;
+            }
+            .login-card .stTextInput input {
+                padding: 11px 14px !important; font-size: 14px !important;
+                background: #ffffff !important; border: 1px solid #d1d5db !important;
+                color: #1f2937 !important; border-radius: 10px !important;
+            }
+            .login-card .stTextInput input:focus {
+                border-color: #1d4ed8 !important; box-shadow: 0 0 0 3px rgba(29,78,216,0.15) !important;
+            }
+            .login-card .stForm { border: none !important; padding: 0 !important; }
+            .login-card .stForm button {
+                padding: 12px 16px !important; font-size: 15px !important;
+                background: #1d4ed8 !important; border: none !important; color: #fff !important;
+                font-weight: 700 !important; border-radius: 10px !important;
+            }
+            .login-card .stForm button:hover { background: #1e40af !important; }
+            .login-card .stCheckbox label { color: #334155 !important; font-size: 13px !important; }
+            .login-cred {
+                background: #f8fafc; border: 1px dashed #cbd5e1;
+                border-radius: 10px; padding: 10px 14px; font-size: 12px;
+                color: #475569 !important; margin-top: 16px;
+            }
+            .login-cred b { color: #1e293b !important; }
+            .login-alert { border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px; border: 1px solid; animation: shake 0.4s ease; }
+            .login-alert.err { background: #fef2f2; border-color: #fecaca; color: #b91c1c !important; }
+            .login-alert.warn { background: #fffbeb; border-color: #fde68a; color: #92400e !important; }
+            @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+            .login-quick { text-align: center; margin-top: 14px; font-size: 12.5px; color: #64748b !important; }
+            .login-quick + div .stButton > button {
+                padding: 7px 10px !important; font-size: 12.5px !important;
+                border-radius: 8px !important;
+                background: #ffffff !important; color: #475569 !important;
+                border: 1px solid #e2e8f0 !important;
+            }
+            .login-quick + div .stButton > button:hover {
+                background: #eff6ff !important; border-color: #93c5fd !important; color: #1d4ed8 !important;
+            }
+            .login-unlock { text-align: center; margin-top: 10px; }
+            .login-footer {
+                text-align: center; margin-top: 18px;
+                font-size: 12px; color: #94a3b8 !important;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+        <div class="bg-blobs">
+            <div class="blob b1"></div><div class="blob b2"></div>
+            <div class="blob b3"></div><div class="blob b4"></div>
+        </div>
+        <div class="bg-grid"></div>
+        <div class="login-card">
+        <div class="login-logo">🏢</div>
+        <h1>HRMS Portal</h1>
+        <p class="sub">Sign in to your workspace</p>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    valid = {
+        "admin@company.com": {"password": "admin123", "role": "admin", "icon": "🛡️", "label": "Admin"},
+        "manager@company.com": {"password": "manager123", "role": "manager", "icon": "👔", "label": "Manager"},
+        "employee@company.com": {"password": "employee123", "role": "employee", "icon": "🧑‍💻", "label": "Employee"},
+    }
+
+    locked_out = st.session_state.login_attempts >= 5
+
+    if locked_out:
+        st.markdown(
+            '<div class="login-alert warn">🔒 <b>Account temporarily locked.</b> Too many failed attempts — please refresh the page to try again.</div>',
+            unsafe_allow_html=True,
+        )
+
+    if st.session_state.pop("login_error", None):
+        st.markdown(
+            f'<div class="login-alert err">⚠️ {st.session_state.get("_last_err", "")}</div>',
+            unsafe_allow_html=True,
+        )
+
+    with st.form("login_form", clear_on_submit=False):
+        username = st.text_input(
+            "Email address",
+            value=st.session_state.get("prefill_user", ""),
+            placeholder="you@company.com",
+            disabled=locked_out,
+        )
+        password = st.text_input(
+            "Password",
+            value=st.session_state.get("prefill_pass", ""),
+            type="password",
+            placeholder="••••••••",
+            disabled=locked_out,
+        )
+        st.session_state.pop("prefill_user", None)
+        st.session_state.pop("prefill_pass", None)
+        remember = st.checkbox("Keep me signed in on this device", value=True, disabled=locked_out)
+        login = st.form_submit_button("Sign In  →", disabled=locked_out, use_container_width=True)
+
     if login:
-        valid = {
-            "admin@company.com": {"password": "admin123", "role": "admin"},
-            "manager@company.com": {"password": "manager123", "role": "manager"},
-            "employee@company.com": {"password": "employee123", "role": "employee"},
-        }
-        if valid.get(username) and valid[username]["password"] == password:
+        uname = username.strip().lower()
+        if not uname or not password:
+            st.session_state["login_error"] = True
+            st.session_state["_last_err"] = "Please enter both your email and password."
+            st.rerun()
+        elif any(k == uname or k.split("@")[0] == uname for k in valid) and valid[uname if uname in valid else f"{uname}@company.com"]["password"] == password:
+            uname = uname if uname in valid else f"{uname}@company.com"
             st.session_state.logged_in = True
-            st.session_state.user_email = username
-            st.session_state.user_role = valid[username]["role"]
+            st.session_state.user_email = uname
+            st.session_state.user_role = valid[uname]["role"]
+            st.session_state.login_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            if not remember:
+                st.session_state["session_only"] = True
+            st.session_state.login_attempts = 0
+            st.toast(f"Welcome back, {valid[uname]['label']}! 👋", icon="🎉")
             st.rerun()
         else:
-            st.error("Invalid credentials")
-    st.markdown("</div>", unsafe_allow_html=True)
+            st.session_state.login_attempts += 1
+            remaining = 5 - st.session_state.login_attempts
+            st.session_state["login_error"] = True
+            st.session_state["_last_err"] = (
+                f"Invalid email or password. {remaining} attempt(s) remaining."
+                if remaining > 0
+                else "Account locked after 5 failed attempts."
+            )
+            st.rerun()
+
+    st.markdown(
+        """
+        <div class="login-cred">
+            🔑 <b>Demo accounts:</b> admin@company.com / admin123<br/>
+            manager@company.com / manager123 · employee@company.com / employee123
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # ---- Demo quick-fill chips (INSIDE the white panel) ----
+    st.markdown('<div class="login-quick">Quick demo sign-in:</div>', unsafe_allow_html=True)
+    chip_cols = st.columns(3)
+    for (chip_email, chip_info), chip_col in zip(valid.items(), chip_cols):
+        with chip_col:
+            if st.button(
+                f"{chip_info['icon']} {chip_info['label']}",
+                key=f"quickfill_{chip_info['role']}",
+                use_container_width=True,
+                disabled=locked_out,
+            ):
+                st.session_state["prefill_user"] = chip_email
+                st.session_state["prefill_pass"] = chip_info["password"]
+                st.session_state.login_attempts = 0
+                st.rerun()
+
+    if locked_out:
+        st.markdown('<div class="login-unlock">', unsafe_allow_html=True)
+        if st.button("🔄 Unlock — reset failed attempts", key="login_unlock", use_container_width=True):
+            st.session_state.login_attempts = 0
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="login-form-footer">New here? <a href="#">Request access from HR</a></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        f'<div class="login-footer">🔒 Secured connection · {datetime.now().strftime("%A, %d %B %Y · %H:%M")} · © 2026 BluePeak Solutions</div>',
+        unsafe_allow_html=True,
+    )
     st.stop()
 
 employees_df = load_employees()
@@ -3173,22 +3391,90 @@ elif selected_menu == "Birthday Wishes":
 
 st.sidebar.markdown("---")
 if st.session_state.user_role == "admin":
-    st.sidebar.subheader("Create Employee")
-    with st.sidebar.form("create_employee_form"):
-        new_name = st.text_input("Employee Name")
-        new_email = st.text_input("Email")
-        new_department = st.selectbox("Department", ["Engineering", "HR", "Finance", "Sales", "Operations"])
-        new_role = st.text_input("Role")
-        new_manager = st.text_input("Manager")
-        create_employee = st.form_submit_button("Create Employee")
-    if create_employee and new_name and new_email:
-        emp_id = f"EMP-{int(datetime.now().timestamp() % 1000000):06d}"
-        execute_query(
-            "INSERT INTO employees (employee_id, name, email, department, role, status, work_mode, manager, salary, phone, address, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (emp_id, new_name, new_email, new_department, new_role, "Active", "Office", new_manager, 80000, "+91 90000 00000", "India", str(datetime.today().date())),
-        )
-        st.sidebar.success(f"Employee {new_name} created successfully.")
-        st.rerun()
+    st.sidebar.subheader("➕ Create Employee")
+    with st.sidebar.expander("Create a new employee", expanded=False):
+        new_name = st.text_input("Full Name", key="ce_name")
+        new_email = st.text_input("Email", key="ce_email")
+        cec1, cec2 = st.columns(2)
+        with cec1:
+            new_department = st.selectbox("Department", ["Engineering", "HR", "Finance", "Sales", "Operations", "Marketing", "Support"], key="ce_dept")
+        with cec2:
+            new_work_mode = st.selectbox("Work Mode", ["Office", "WFH", "Hybrid"], key="ce_mode")
+        new_role = st.text_input("Role / Designation", key="ce_role")
+        new_manager = st.text_input("Reporting Manager", key="ce_mgr")
+        cep1, cep2 = st.columns(2)
+        with cep1:
+            new_salary = st.number_input("Monthly Salary (₹)", min_value=0, step=1000, value=50000, key="ce_salary")
+        with cep2:
+            new_phone = st.text_input("Phone", value="+91 ", key="ce_phone")
+        new_address = st.text_input("Location (City, State)", key="ce_addr")
+        send_welcome = st.checkbox("📧 Send welcome email", value=True, key="ce_welcome")
+
+        # live validation hints
+        _email_ok = bool(new_email.strip()) and "@" in new_email and "." in new_email.split("@")[-1]
+        _dup = bool(new_email.strip()) and (employees_df["email"].str.lower() == new_email.strip().lower()).any() if not employees_df.empty else False
+        if new_email.strip() and not _email_ok:
+            st.caption("⚠️ Email format looks invalid.")
+        if _dup:
+            st.caption("⚠️ An employee with this email already exists.")
+        if new_name.strip() and new_email.strip() and _email_ok and not _dup:
+            st.caption(f"✅ Ready to create — ID will be `{new_name.strip().split()[0][:3].upper()}-{int(datetime.now().timestamp() % 100000):05d}`")
+
+        if st.button("🚀 Create Employee", key="ce_submit", use_container_width=True, type="primary"):
+            if not new_name.strip() or not new_email.strip():
+                st.sidebar.error("Name and email are required.")
+            elif not _email_ok:
+                st.sidebar.error("Please enter a valid email address.")
+            elif _dup:
+                st.sidebar.error("Duplicate email — employee already exists.")
+            else:
+                emp_id = f"{new_name.strip().split()[0][:3].upper()}-{int(datetime.now().timestamp() % 100000):05d}"
+                execute_query(
+                    "INSERT INTO employees (employee_id, name, email, department, role, status, work_mode, manager, salary, phone, address, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (emp_id, new_name.strip(), new_email.strip().lower(), new_department, new_role or "Team Member", "Active", new_work_mode, new_manager or "Unassigned", float(new_salary), new_phone or "+91 ", new_address or "India", str(datetime.today().date())),
+                )
+                record_approval_history("Employee", new_name.strip(), emp_id, st.session_state.user_email, st.session_state.user_email, "Approved", f"Employee created via admin panel ({new_department})")
+                if send_welcome:
+                    ok, msg = send_email(
+                        new_email.strip().lower(),
+                        "Welcome to BluePeak Solutions! 🎉",
+                        f"Hi {new_name.strip()},\n\nWelcome aboard! Your HRMS account is ready.\nEmployee ID: {emp_id}\nDepartment: {new_department}\nRole: {new_role or 'Team Member'}\nWork Mode: {new_work_mode}\n\nPlease log in to the HRMS portal to complete your onboarding.\n\n— HR Team",
+                    )
+                    st.sidebar.success(f"✅ {new_name} created (ID: {emp_id}). Email: {msg}")
+                else:
+                    st.sidebar.success(f"✅ Employee {new_name} created (ID: {emp_id}).")
+                st.rerun()
+
+    # ---------- NEW: Bulk import employees from CSV ----------
+    with st.sidebar.expander("📥 Bulk Import (CSV)", expanded=False):
+        st.caption("Columns: name, email, department, role, manager, salary")
+        csv_file = st.file_uploader("Upload employees CSV", type=["csv"], key="ce_csv")
+        if csv_file is not None:
+            try:
+                import_df = pd.read_csv(csv_file)
+                required = {"name", "email"}
+                if not required.issubset({c.lower() for c in import_df.columns}):
+                    st.error("CSV must contain at least 'name' and 'email' columns.")
+                else:
+                    import_df.columns = [c.lower() for c in import_df.columns]
+                    existing = set(employees_df["email"].str.lower()) if not employees_df.empty else set()
+                    added, skipped = 0, 0
+                    for _, r in import_df.iterrows():
+                        email = str(r.get("email", "")).strip().lower()
+                        name = str(r.get("name", "")).strip()
+                        if not name or not email or email in existing:
+                            skipped += 1
+                            continue
+                        emp_id = f"{name.split()[0][:3].upper()}-{int(datetime.now().timestamp() * 1000) % 100000:05d}"
+                        execute_query(
+                            "INSERT INTO employees (employee_id, name, email, department, role, status, work_mode, manager, salary, phone, address, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                            (emp_id, name, email, str(r.get("department", "Operations")) or "Operations", str(r.get("role", "Team Member")) or "Team Member", "Active", "Office", str(r.get("manager", "Unassigned")) or "Unassigned", float(r.get("salary", 50000) or 50000), "+91 ", "India", str(datetime.today().date())),
+                        )
+                        existing.add(email)
+                        added += 1
+                    st.success(f"✅ Imported {added} employee(s), skipped {skipped} (empty/duplicate).")
+            except Exception as iexc:
+                st.error(f"Import failed: {iexc}")
 
 st.sidebar.subheader("Send Employee Email")
 with st.sidebar.form("email_form"):
